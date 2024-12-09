@@ -24,6 +24,7 @@ namespace servecoin
         }
 
         JsonFileManager manager = new JsonFileManager();
+        LanguageManager lang = new LanguageManager();
 
         void TargetsTableForm()
         {
@@ -43,12 +44,12 @@ namespace servecoin
             _dataGridView.AllowUserToResizeRows = false;
             _dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            _dataGridView.Columns.Add("Id", "Id");
-            _dataGridView.Columns.Add("Name", "Name");
-            _dataGridView.Columns.Add("Target", "Target");
-            _dataGridView.Columns.Add("Accumulated", "Accumulated");
-            _dataGridView.Columns.Add("Currency", "Currency");
-            _dataGridView.Columns.Add("Controls", "Controls");
+            _dataGridView.Columns.Add("Id", "ID");
+            _dataGridView.Columns.Add("Name", lang.GetText((string)manager.GetNestedValue("language"), "nameColumn"));
+            _dataGridView.Columns.Add("Target", lang.GetText((string)manager.GetNestedValue("language"), "targetColumn"));
+            _dataGridView.Columns.Add("Accumulated", lang.GetText((string)manager.GetNestedValue("language"), "accumulatedColumn"));
+            _dataGridView.Columns.Add("Currency", lang.GetText((string)manager.GetNestedValue("language"), "currencyColumn"));
+            _dataGridView.Columns.Add("Controls", lang.GetText((string)manager.GetNestedValue("language"), "controlsColumn"));
 
             Controls.Add(_dataGridView);
         }
@@ -65,7 +66,7 @@ namespace servecoin
                 {
                     (control[0] as DataGridView).Rows.Add(
                         i,
-                        target["name"]?.ToString() ?? "Невідома ціль",
+                        target["name"]?.ToString() ?? lang.GetText((string) manager.GetNestedValue("language"), "unknownTarget"),
                         target["target"]?.ToString() ?? "0",
                         target["accumulated"]?.ToString() ?? "0",
                         target["currency"]?.ToString() ?? ""
@@ -98,7 +99,7 @@ namespace servecoin
             button1.Name = "button1";
             button1.Size = new Size(200, 23);
             button1.TabIndex = 1;
-            button1.Text = "Создать";
+            button1.Text = lang.GetText((string)manager.GetNestedValue("language"), "createButton");
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -117,7 +118,7 @@ namespace servecoin
             button2.Name = "button2";
             button2.Size = new Size(200, 23);
             button2.TabIndex = 2;
-            button2.Text = "Обновить";
+            button2.Text = lang.GetText((string)manager.GetNestedValue("language"), "updateButton");
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -129,7 +130,7 @@ namespace servecoin
             label1.Name = "label1";
             label1.Size = new Size(60, 28);
             label1.TabIndex = 4;
-            label1.Text = "Цели";
+            label1.Text = lang.GetText((string)manager.GetNestedValue("language"), "targetsTitle");
             // 
             // Form1
             // 

@@ -17,25 +17,6 @@ namespace servecoin
         [STAThread]
         static void Main(string[] args)
         {
-            // Перевіряємо, чи є аргумент "--debug"
-            bool isDebugMode = args.Contains("--debug", StringComparer.OrdinalIgnoreCase);
-
-            if (isDebugMode)
-            {
-                // Відкриваємо консоль, якщо її ще немає
-                AllocConsole();
-                Console.WriteLine("Debug mode enabled. Console output redirected.");
-            }
-
-            // Основна логіка програми
-            Console.WriteLine("Програма запущена!");
-
-            if (isDebugMode)
-            {
-                Console.WriteLine("Натисніть будь-яку клавішу, щоб закрити консоль...");
-                Console.ReadKey(); // Очікуємо, щоб користувач побачив вихідні дані
-                FreeConsole(); // Закриваємо консоль
-            }
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
@@ -58,6 +39,7 @@ namespace servecoin
                 var initialContent = new JObject();
                 File.WriteAllText(_filePath, initialContent.ToString(Newtonsoft.Json.Formatting.Indented));
                 this.SetNestedValue("piggy.targets", new JArray { });
+                this.SetNestedValue("language", "en");
             }
         }
 
@@ -229,10 +211,23 @@ namespace servecoin
         private readonly string _filePath = "languages.ini";
         private readonly Dictionary<string, Dictionary<string, string>> _translations = new();
 
-        public LanguageManager(string filePath)
+        public LanguageManager()
         {
-            _filePath = filePath;
+            DownloadLanguageFileAsync();
             LoadTranslations();
+        }
+
+        private static async Task DownloadLanguageFileAsync()
+        {
+            string filePath = "languages.ini";
+            string url = "https://raw.githubusercontent.com/dotinto/servecoin/main/languages.ini";
+            using var httpClient = new HttpClient();
+
+            var response = await httpClient.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+
+            var content = await response.Content.ReadAsStringAsync();
+            await File.WriteAllTextAsync(filePath, content);
         }
 
         private void LoadTranslations()
