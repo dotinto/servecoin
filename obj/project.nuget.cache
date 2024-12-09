@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "zFXFtKdzXHY=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\q\\source\\repos\\servecoin\\servecoin.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\q\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
