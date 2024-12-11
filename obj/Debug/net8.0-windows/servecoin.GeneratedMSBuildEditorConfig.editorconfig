@@ -17,3 +17,6 @@ build_property.RootNamespace = servecoin
 build_property.ProjectDir = C:\Users\q\source\repos\servecoin\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 

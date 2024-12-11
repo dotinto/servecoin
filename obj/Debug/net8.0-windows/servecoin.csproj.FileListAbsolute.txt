@@ -18,3 +18,6 @@ C:\Users\q\source\repos\servecoin\obj\Debug\net8.0-windows\servecoin.pdb
 C:\Users\q\source\repos\servecoin\obj\Debug\net8.0-windows\servecoin.genruntimeconfig.cache
 C:\Users\q\source\repos\servecoin\obj\Debug\net8.0-windows\ref\servecoin.dll
 C:\Users\q\source\repos\servecoin\obj\Debug\net8.0-windows\servecoin.Form2.resources
+C:\Users\q\source\repos\servecoin\obj\Debug\net8.0-windows\servecoin.sourcelink.json
+C:\Users\q\source\repos\servecoin\obj\Debug\net8.0-windows\servecoin.Properties.Resources.resources
+C:\Users\q\source\repos\servecoin\obj\Debug\net8.0-windows\servecoin.Form3.resources

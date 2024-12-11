@@ -23,6 +23,7 @@ namespace servecoin
         }
 
         JsonFileManager manager = new JsonFileManager();
+        Form1 form1 = new Form1();
 
         #region Windows Form Designer generated code
 
@@ -40,7 +41,7 @@ namespace servecoin
 
             if (textBox4.Text == "" && comboBox1.SelectedItem == null)
             {
-                MessageBox.Show("Невозможно добавить: не выбрана валюта", "Невозможно добавить цель", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cannot create target: Currency not selected", "Cannot create target", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 permitedToSave = false;
             } else if (textBox4.Text != "")
             {
@@ -52,12 +53,12 @@ namespace servecoin
             
             if (int.Parse(textBox2.Text) <= int.Parse(textBox3.Text))
             {
-                MessageBox.Show("Невозможно добавить: Накоплено больше цели", "Невозможно добавить цель", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cannot create target: Accumulated more than the target", "Cannot create target", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 permitedToSave = false;
             }
             if (textBox1.TextLength < 4)
             {
-                MessageBox.Show("Невозможно добавить: Наименование содержит меньше 4 символов", "Невозможно добавить цель", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cannot create target: Name contains less than 4 characters", "Cannot create target", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 permitedToSave = false;
             }
 
@@ -72,6 +73,7 @@ namespace servecoin
             if (permitedToSave)
             {
                 manager.AddToArrayByPath("piggy.targets", data);
+                form1.AddTargetsToTable();
                 this.Close();
             }
         }
@@ -90,7 +92,7 @@ namespace servecoin
             // 
             textBox1.Location = new Point(12, 12);
             textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Наименование (4-64 символов)";
+            textBox1.PlaceholderText = "Name (4-64 symbols)";
             textBox1.Size = new Size(437, 23);
             textBox1.TabIndex = 0;
             // 
@@ -98,7 +100,7 @@ namespace servecoin
             // 
             textBox2.Location = new Point(12, 41);
             textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "Цель";
+            textBox2.PlaceholderText = "Target";
             textBox2.Size = new Size(113, 23);
             textBox2.TabIndex = 1;
             textBox2.KeyPress += textBox2_KeyPress;
@@ -107,7 +109,7 @@ namespace servecoin
             // 
             textBox3.Location = new Point(12, 70);
             textBox3.Name = "textBox3";
-            textBox3.PlaceholderText = "Накоплено";
+            textBox3.PlaceholderText = "Accumulated";
             textBox3.Size = new Size(113, 23);
             textBox3.TabIndex = 2;
             textBox3.KeyPress += textBox3_KeyPress;
@@ -116,7 +118,7 @@ namespace servecoin
             // 
             textBox4.Location = new Point(217, 41);
             textBox4.Name = "textBox4";
-            textBox4.PlaceholderText = "Валюта";
+            textBox4.PlaceholderText = "Currency (3-24 symbols)";
             textBox4.Size = new Size(232, 23);
             textBox4.TabIndex = 3;
             // 
@@ -124,7 +126,7 @@ namespace servecoin
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Евро (€)", "Доллар США ($)", "Украинская гривна (₴)" });
+            comboBox1.Items.AddRange(new object[] { "Euro (€)", "US Dollar ($)" });
             comboBox1.Location = new Point(217, 70);
             comboBox1.Name = "comboBox1";
             comboBox1.RightToLeft = RightToLeft.No;
@@ -134,21 +136,21 @@ namespace servecoin
             // 
             // button1
             // 
-            button1.Location = new Point(336, 185);
+            button1.Location = new Point(336, 133);
             button1.Name = "button1";
             button1.Size = new Size(113, 23);
             button1.TabIndex = 5;
-            button1.Text = "Сохранить";
+            button1.Text = "Save and close";
             button1.UseVisualStyleBackColor = true;
             button1.Click += SaveButtonPressed;
             // 
             // button2
             // 
-            button2.Location = new Point(12, 185);
+            button2.Location = new Point(12, 133);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 6;
-            button2.Text = "Отмена";
+            button2.Text = "Cancel";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -156,7 +158,7 @@ namespace servecoin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(461, 220);
+            ClientSize = new Size(461, 168);
             ControlBox = false;
             Controls.Add(button2);
             Controls.Add(button1);
@@ -170,7 +172,7 @@ namespace servecoin
             MinimizeBox = false;
             Name = "Form2";
             ShowInTaskbar = false;
-            Text = "Добавить цель";
+            Text = "Create target";
             ResumeLayout(false);
             PerformLayout();
         }
