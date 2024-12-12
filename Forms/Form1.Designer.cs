@@ -162,26 +162,26 @@ namespace servecoin
             // saveToolStripMenuItem
             // 
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(107, 22);
+            saveToolStripMenuItem.Size = new Size(180, 22);
             saveToolStripMenuItem.Text = "Save";
             saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(104, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // aboutToolStripMenuItem
             // 
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(107, 22);
+            aboutToolStripMenuItem.Size = new Size(180, 22);
             aboutToolStripMenuItem.Text = "About";
             aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(107, 22);
+            exitToolStripMenuItem.Size = new Size(180, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -190,7 +190,7 @@ namespace servecoin
             toolStripDropDownButton2.AutoSize = false;
             toolStripDropDownButton2.AutoToolTip = false;
             toolStripDropDownButton2.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripDropDownButton2.DropDownItems.AddRange(new ToolStripItem[] { createToolStripMenuItem, refreshToolStripMenuItem });
+            toolStripDropDownButton2.DropDownItems.AddRange(new ToolStripItem[] { createToolStripMenuItem, refreshToolStripMenuItem, createToolStripMenuItem1 });
             toolStripDropDownButton2.Image = (Image)resources.GetObject("toolStripDropDownButton2.Image");
             toolStripDropDownButton2.ImageTransparentColor = Color.Magenta;
             toolStripDropDownButton2.Name = "toolStripDropDownButton2";
@@ -200,15 +200,15 @@ namespace servecoin
             // createToolStripMenuItem
             // 
             createToolStripMenuItem.Name = "createToolStripMenuItem";
-            createToolStripMenuItem.Size = new Size(113, 22);
-            createToolStripMenuItem.Text = "Create";
+            createToolStripMenuItem.Size = new Size(180, 22);
+            createToolStripMenuItem.Text = "Create target";
             createToolStripMenuItem.Click += createToolStripMenuItem_Click;
             // 
             // refreshToolStripMenuItem
             // 
             refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            refreshToolStripMenuItem.Size = new Size(113, 22);
-            refreshToolStripMenuItem.Text = "Refresh";
+            refreshToolStripMenuItem.Size = new Size(180, 22);
+            refreshToolStripMenuItem.Text = "Refresh table";
             refreshToolStripMenuItem.Click += refreshToolStripMenuItem_Click;
             // 
             // toolStripDropDownButton3
@@ -271,5 +271,6 @@ namespace servecoin
         private ToolStripMenuItem exitToolStripMenuItem;
         private ToolStripDropDownButton toolStripDropDownButton3;
         private ToolStripMenuItem openCalculatorToolStripMenuItem;
+        private ToolStripMenuItem createToolStripMenuItem1;
     }
 }
