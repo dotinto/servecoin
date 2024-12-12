@@ -1,6 +1,6 @@
 # ServeCoin
 
-To install, you will need to have .NET 8.0 or higher installed.<br />
+To run app, you will need to have .NET 8.0 or higher installed.<br />
 Only available for Windows users.
 
 ## Installation
