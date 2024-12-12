@@ -60,7 +60,7 @@ namespace servecoin
             var control = this.Controls.Find("dataGridView1", true);
             if (control.Length > 0 && control[0] is DataGridView dataGridView)
             {
-                foreach (DataGridViewRow row in (control[0] as DataGridView).Rows)
+                foreach (DataGridViewRow row in dataGridView.Rows)
                 {
                     if (!row.IsNewRow)
                     {
@@ -85,11 +85,11 @@ namespace servecoin
             var control = this.Controls.Find("dataGridView1", true);
             if (control.Length > 0 && control[0] is DataGridView dataGridView)
             {
-                (control[0] as DataGridView).Rows.Clear();
+                dataGridView.Rows.Clear();
                 int i = 0;
                 foreach (var target in targets)
                 {
-                    (control[0] as DataGridView).Rows.Add(
+                    dataGridView.Rows.Add(
                         i,
                         target["name"]?.ToString() ?? "Unknown",
                         target["target"]?.ToString() ?? "0",
@@ -121,6 +121,8 @@ namespace servecoin
             toolStripDropDownButton2 = new ToolStripDropDownButton();
             createToolStripMenuItem = new ToolStripMenuItem();
             refreshToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator2 = new ToolStripSeparator();
+            applyFormattingToolStripMenuItem = new ToolStripMenuItem();
             toolStripDropDownButton3 = new ToolStripDropDownButton();
             openCalculatorToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
@@ -162,26 +164,26 @@ namespace servecoin
             // saveToolStripMenuItem
             // 
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(180, 22);
+            saveToolStripMenuItem.Size = new Size(107, 22);
             saveToolStripMenuItem.Text = "Save";
             saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
+            toolStripSeparator1.Size = new Size(104, 6);
             // 
             // aboutToolStripMenuItem
             // 
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(180, 22);
+            aboutToolStripMenuItem.Size = new Size(107, 22);
             aboutToolStripMenuItem.Text = "About";
             aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(107, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -190,7 +192,7 @@ namespace servecoin
             toolStripDropDownButton2.AutoSize = false;
             toolStripDropDownButton2.AutoToolTip = false;
             toolStripDropDownButton2.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripDropDownButton2.DropDownItems.AddRange(new ToolStripItem[] { createToolStripMenuItem, refreshToolStripMenuItem, createToolStripMenuItem1 });
+            toolStripDropDownButton2.DropDownItems.AddRange(new ToolStripItem[] { createToolStripMenuItem, refreshToolStripMenuItem, toolStripSeparator2, applyFormattingToolStripMenuItem });
             toolStripDropDownButton2.Image = (Image)resources.GetObject("toolStripDropDownButton2.Image");
             toolStripDropDownButton2.ImageTransparentColor = Color.Magenta;
             toolStripDropDownButton2.Name = "toolStripDropDownButton2";
@@ -210,6 +212,18 @@ namespace servecoin
             refreshToolStripMenuItem.Size = new Size(180, 22);
             refreshToolStripMenuItem.Text = "Refresh table";
             refreshToolStripMenuItem.Click += refreshToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(177, 6);
+            // 
+            // applyFormattingToolStripMenuItem
+            // 
+            applyFormattingToolStripMenuItem.Name = "applyFormattingToolStripMenuItem";
+            applyFormattingToolStripMenuItem.Size = new Size(180, 22);
+            applyFormattingToolStripMenuItem.Text = "Apply formatting";
+            applyFormattingToolStripMenuItem.Click += applyFormattingToolStripMenuItem_Click;
             // 
             // toolStripDropDownButton3
             // 
@@ -272,5 +286,7 @@ namespace servecoin
         private ToolStripDropDownButton toolStripDropDownButton3;
         private ToolStripMenuItem openCalculatorToolStripMenuItem;
         private ToolStripMenuItem createToolStripMenuItem1;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripMenuItem applyFormattingToolStripMenuItem;
     }
 }

@@ -2,6 +2,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text.Json.Nodes;
+using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using servecoin.interfaces;
 
@@ -13,35 +14,6 @@ namespace servecoin
         {
             InitializeComponent();
 
-        }
-
-        private void DataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            var dataGridView = sender as DataGridView;
-
-            if (dataGridView != null && e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                if (dataGridView.Columns[e.ColumnIndex].Name == "Target" ||
-                    dataGridView.Columns[e.ColumnIndex].Name == "Accumulated")
-                {
-                    string cellValue = dataGridView[e.ColumnIndex, e.RowIndex].Value?.ToString();
-
-                    if (!string.IsNullOrWhiteSpace(cellValue))
-                    {
-                        try
-                        {
-                            double result = EvaluateExpression(cellValue);
-
-                            dataGridView[e.ColumnIndex, e.RowIndex].Value = result;
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Invalid expression: {cellValue}\n{ex.Message}",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-            }
         }
 
         public static double EvaluateExpression(string expression)
@@ -191,7 +163,7 @@ namespace servecoin
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             JArray cur = ConvertTableToArray();
-            JArray last = (JArray) manager.GetNestedValue("piggy.targets");
+            JArray last = (JArray)manager.GetNestedValue("piggy.targets");
 
             if (!JToken.DeepEquals(cur, last))
             {
@@ -211,6 +183,64 @@ namespace servecoin
                     e.Cancel = true;
                 }
             }
+        }
+
+        private Dictionary<(int RowIndex, int ColumnIndex), string> _pendingChanges = new();
+
+        // Событие завершения редактирования ячейки
+        private void DataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var dataGridView = sender as DataGridView;
+            if (dataGridView != null && e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                // Проверяем, что редактируется столбец "Target" или "Accumulated"
+                if (dataGridView.Columns[e.ColumnIndex].Name == "Target" || dataGridView.Columns[e.ColumnIndex].Name == "Accumulated")
+                {
+                    // Получаем текст из редактируемой ячейки
+                    string cellValue = dataGridView[e.ColumnIndex, e.RowIndex].Value?.ToString();
+                    if (!string.IsNullOrWhiteSpace(cellValue))
+                    {
+                        // Сохраняем изменения в промежуточный словарь
+                        _pendingChanges[(e.RowIndex, e.ColumnIndex)] = cellValue;
+                    }
+                }
+            }
+        }
+        private void applyFormattingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var change in _pendingChanges)
+            {
+                try
+                {
+                    // Получаем строку и столбец измененной ячейки
+                    int rowIndex = change.Key.RowIndex;
+                    int columnIndex = change.Key.ColumnIndex;
+
+                    // Вычисляем результат выражения
+                    double result = EvaluateExpression(change.Value);
+
+                    // Применяем результат в таблицу
+                    var control = this.Controls.Find("dataGridView1", true);
+                    if (control.Length > 0 && control[0] is DataGridView dataGridView)
+                    {
+                        dataGridView[columnIndex, rowIndex].Value = result;
+                    }
+                    
+                }
+                catch (Exception ex)
+                {
+                    // Если выражение некорректно, показываем сообщение об ошибке
+                    MessageBox.Show(
+                        $"Invalid expression in cell ({change.Key.RowIndex}, {change.Key.ColumnIndex}): {change.Value}\n{ex.Message}",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
+            }
+
+            // Очищаем промежуточные изменения после применения
+            _pendingChanges.Clear();
         }
     }
 }
