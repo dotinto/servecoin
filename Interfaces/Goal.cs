@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace servecoin.interfaces
 {
-    public interface ITarget
+    public interface IGoal
     {
         string name { get; set; }
-        string target {  get; set; }
+        string goal {  get; set; }
         string accumulated { get; set; }
         string currency { get; set; }
     }
 
-    public class Target : ITarget
+    public class Goal : IGoal
     {
         public string name { get; set; }
-        public string target { get; set; }
+        public string goal { get; set; }
         public string accumulated { get; set; }
         public string currency { get; set; }
     }

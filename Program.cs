@@ -38,7 +38,7 @@ namespace servecoin
 
                 var initialContent = new JObject();
                 File.WriteAllText(_filePath, initialContent.ToString(Newtonsoft.Json.Formatting.Indented));
-                this.SetNestedValue("piggy.targets", new JArray { });
+                this.SetNestedValue("piggy.goals", new JArray { });
                 this.SetNestedValue("language", "en");
             }
         }

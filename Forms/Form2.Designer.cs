@@ -41,7 +41,7 @@ namespace servecoin
 
             if (textBox4.Text == "" && comboBox1.SelectedItem == null)
             {
-                MessageBox.Show("Cannot create target: Currency not selected", "Cannot create target", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cannot create goal: Currency not selected", "Cannot create goal", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 permitedToSave = false;
             } else if (textBox4.Text != "")
             {
@@ -53,27 +53,27 @@ namespace servecoin
             
             if (int.Parse(textBox2.Text) <= int.Parse(textBox3.Text))
             {
-                MessageBox.Show("Cannot create target: Accumulated more than the target", "Cannot create target", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cannot create goal: Accumulated more than the goal", "Cannot create goal", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 permitedToSave = false;
             }
             if (textBox1.TextLength < 4)
             {
-                MessageBox.Show("Cannot create target: Name contains less than 4 characters", "Cannot create target", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cannot create goal: Name contains less than 4 characters", "Cannot create goal", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 permitedToSave = false;
             }
 
             JObject data = new JObject
             {
                 ["name"] = textBox1.Text,
-                ["target"] = textBox2.Text,
+                ["goal"] = textBox2.Text,
                 ["accumulated"] = textBox3.Text,
                 ["currency"] = currency,
             };
             
             if (permitedToSave)
             {
-                manager.AddToArrayByPath("piggy.targets", data);
-                form1.AddTargetsToTable();
+                manager.AddToArrayByPath("piggy.goals", data);
+                form1.AddGoalsToTable();
                 this.Close();
             }
         }
@@ -100,7 +100,7 @@ namespace servecoin
             // 
             textBox2.Location = new Point(12, 41);
             textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "Target";
+            textBox2.PlaceholderText = "Goal";
             textBox2.Size = new Size(113, 23);
             textBox2.TabIndex = 1;
             textBox2.KeyPress += textBox2_KeyPress;
@@ -172,7 +172,7 @@ namespace servecoin
             MinimizeBox = false;
             Name = "Form2";
             ShowInTaskbar = false;
-            Text = "Create target";
+            Text = "Create goal";
             ResumeLayout(false);
             PerformLayout();
         }

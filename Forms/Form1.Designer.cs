@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using servecoin.interfaces;
 using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -27,7 +28,7 @@ namespace servecoin
 
         JsonFileManager manager = new JsonFileManager();
         public DataGridView _dataGridView = new DataGridView();
-        void TargetsTableForm()
+        void GoalsTableForm()
         {
             _dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             _dataGridView.Location = new Point(0, 65);
@@ -47,7 +48,7 @@ namespace servecoin
 
             _dataGridView.Columns.Add("Id", "ID");
             _dataGridView.Columns.Add("Name", "Name");
-            _dataGridView.Columns.Add("Target", "Target");
+            _dataGridView.Columns.Add("Goal", "Goal");
             _dataGridView.Columns.Add("Accumulated", "Accumulated");
             _dataGridView.Columns.Add("Currency", "Currency");
 
@@ -67,7 +68,7 @@ namespace servecoin
                         JObject obj = new JObject
                         {
                             ["name"] = row.Cells["Name"].Value?.ToString() ?? string.Empty,
-                            ["target"] = row.Cells["Target"].Value?.ToString() ?? string.Empty,
+                            ["goal"] = row.Cells["Goal"].Value?.ToString() ?? string.Empty,
                             ["accumulated"] = row.Cells["Accumulated"].Value?.ToString() ?? string.Empty,
                             ["currency"] = row.Cells["Currency"].Value?.ToString() ?? string.Empty
                         };
@@ -79,22 +80,22 @@ namespace servecoin
             return jsonArray;
         }
 
-        public void AddTargetsToTable()
+        public void AddGoalsToTable()
         {
-            JArray targets = (JArray) manager.GetNestedValue("piggy.targets");
+            JArray goals = (JArray) manager.GetNestedValue("piggy.goals");
             var control = this.Controls.Find("dataGridView1", true);
             if (control.Length > 0 && control[0] is DataGridView dataGridView)
             {
                 dataGridView.Rows.Clear();
                 int i = 0;
-                foreach (var target in targets)
+                foreach (var goal in goals)
                 {
                     dataGridView.Rows.Add(
                         i,
-                        target["name"]?.ToString() ?? "Unknown",
-                        target["target"]?.ToString() ?? "0",
-                        target["accumulated"]?.ToString() ?? "0",
-                        target["currency"]?.ToString() ?? ""
+                        goal["name"]?.ToString() ?? "Unknown",
+                        goal["goal"]?.ToString() ?? "0",
+                        goal["accumulated"]?.ToString() ?? "0",
+                        goal["currency"]?.ToString() ?? ""
                     );
                     i++;
                 }
@@ -121,12 +122,12 @@ namespace servecoin
             toolStripDropDownButton2 = new ToolStripDropDownButton();
             createToolStripMenuItem = new ToolStripMenuItem();
             refreshToolStripMenuItem = new ToolStripMenuItem();
+            viewSummaryToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
             applyFormattingToolStripMenuItem = new ToolStripMenuItem();
             toolStripDropDownButton3 = new ToolStripDropDownButton();
             openCalculatorToolStripMenuItem = new ToolStripMenuItem();
             dataGridView2 = new DataGridView();
-            viewSummaryToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             ((ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
@@ -137,9 +138,9 @@ namespace servecoin
             label1.Font = new Font("Segoe UI", 15F);
             label1.Location = new Point(12, 25);
             label1.Name = "label1";
-            label1.Size = new Size(74, 28);
+            label1.Size = new Size(61, 28);
             label1.TabIndex = 4;
-            label1.Text = "Targets";
+            label1.Text = "Goals";
             // 
             // toolStrip1
             // 
@@ -167,26 +168,26 @@ namespace servecoin
             // saveToolStripMenuItem
             // 
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(107, 22);
+            saveToolStripMenuItem.Size = new Size(180, 22);
             saveToolStripMenuItem.Text = "Save";
             saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(104, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // aboutToolStripMenuItem
             // 
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(107, 22);
+            aboutToolStripMenuItem.Size = new Size(180, 22);
             aboutToolStripMenuItem.Text = "About";
             aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(107, 22);
+            exitToolStripMenuItem.Size = new Size(180, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -206,7 +207,7 @@ namespace servecoin
             // 
             createToolStripMenuItem.Name = "createToolStripMenuItem";
             createToolStripMenuItem.Size = new Size(180, 22);
-            createToolStripMenuItem.Text = "Create target";
+            createToolStripMenuItem.Text = "Create goal";
             createToolStripMenuItem.Click += createToolStripMenuItem_Click;
             // 
             // refreshToolStripMenuItem
@@ -215,6 +216,13 @@ namespace servecoin
             refreshToolStripMenuItem.Size = new Size(180, 22);
             refreshToolStripMenuItem.Text = "Refresh table";
             refreshToolStripMenuItem.Click += refreshToolStripMenuItem_Click;
+            // 
+            // viewSummaryToolStripMenuItem
+            // 
+            viewSummaryToolStripMenuItem.Name = "viewSummaryToolStripMenuItem";
+            viewSummaryToolStripMenuItem.Size = new Size(180, 22);
+            viewSummaryToolStripMenuItem.Text = "View summary";
+            viewSummaryToolStripMenuItem.Click += viewSummaryToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
@@ -243,7 +251,7 @@ namespace servecoin
             // openCalculatorToolStripMenuItem
             // 
             openCalculatorToolStripMenuItem.Name = "openCalculatorToolStripMenuItem";
-            openCalculatorToolStripMenuItem.Size = new Size(160, 22);
+            openCalculatorToolStripMenuItem.Size = new Size(180, 22);
             openCalculatorToolStripMenuItem.Text = "Open Calculator";
             openCalculatorToolStripMenuItem.Click += openCalculatorToolStripMenuItem_Click;
             // 
@@ -254,13 +262,6 @@ namespace servecoin
             dataGridView2.Name = "dataGridView2";
             dataGridView2.Size = new Size(800, 385);
             dataGridView2.TabIndex = 6;
-            // 
-            // viewSummaryToolStripMenuItem
-            // 
-            viewSummaryToolStripMenuItem.Name = "viewSummaryToolStripMenuItem";
-            viewSummaryToolStripMenuItem.Size = new Size(180, 22);
-            viewSummaryToolStripMenuItem.Text = "View summary";
-            viewSummaryToolStripMenuItem.Click += viewSummaryToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -291,8 +292,8 @@ namespace servecoin
         void onload()
         {
             dataGridView2.Visible = false;
-            TargetsTableForm();
-            AddTargetsToTable();
+            GoalsTableForm();
+            AddGoalsToTable();
         }
         private Label label1;
         private ToolStrip toolStrip1;

@@ -50,7 +50,7 @@ namespace servecoin
 
             string[] denyReasons = {
                 "Incorrect value",
-                "Accumulated is bigger or equals to target. Delete row to finish target.",
+                "Accumulated is bigger or equals to goal. Delete row to finish goal.",
                 "Name must be longer. (4-64 limit)",
                 "Name must be shorter. (4-64 limit)",
                 "Currency must be longer. (3-24 limit)",
@@ -66,11 +66,11 @@ namespace servecoin
             {
                 int index = table.IndexOf(tableObj);
 
-                ITarget target = tableObj.ToObject<Target>();
+                IGoal goal = tableObj.ToObject<Goal>();
 
-                if (target.accumulated != null)
+                if (goal.accumulated != null)
                 {
-                    foreach (char c in target.accumulated)
+                    foreach (char c in goal.accumulated)
                     {
                         if (!char.IsDigit(c))
                         {
@@ -81,14 +81,14 @@ namespace servecoin
                     }
                 }
 
-                if (target.target != null)
+                if (goal.goal != null)
                 {
-                    foreach (char c in target.target)
+                    foreach (char c in goal.goal)
                     {
                         if (!char.IsDigit(c))
                         {
                             deniedReason = 0;
-                            deniedString = $"{index}: target";
+                            deniedString = $"{index}: goal";
                             break;
                         }
                     }
@@ -97,27 +97,27 @@ namespace servecoin
                 if (deniedReason != -1)
                     break;
 
-                if (Int32.Parse(target.target) <= Int32.Parse(target.accumulated))
+                if (Int32.Parse(goal.goal) <= Int32.Parse(goal.accumulated))
                 {
                     deniedReason = 1;
                     deniedString = $"{index}";
                 }
-                if (target.name.Length < 4)
+                if (goal.name.Length < 4)
                 {
                     deniedReason = 2;
                     deniedString = $"{index}: name";
                 }
-                if (target.name.Length > 64)
+                if (goal.name.Length > 64)
                 {
                     deniedReason = 3;
                     deniedString = $"{index}: name";
                 }
-                if (target.currency.Length < 3)
+                if (goal.currency.Length < 3)
                 {
                     deniedReason = 4;
                     deniedString = $"{index}: currency";
                 }
-                if (target.currency.Length > 24)
+                if (goal.currency.Length > 24)
                 {
                     deniedReason = 5;
                     deniedString = $"{index}: currency";
@@ -131,7 +131,7 @@ namespace servecoin
             }
             else
             {
-                manager.SetNestedValue("piggy.targets", table);
+                manager.SetNestedValue("piggy.goals", table);
             }
         }
 
@@ -142,7 +142,7 @@ namespace servecoin
 
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddTargetsToTable();
+            AddGoalsToTable();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -163,7 +163,7 @@ namespace servecoin
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             JArray cur = ConvertTableToArray();
-            JArray last = (JArray)manager.GetNestedValue("piggy.targets");
+            JArray last = (JArray)manager.GetNestedValue("piggy.goals");
 
             if (!JToken.DeepEquals(cur, last))
             {
@@ -187,20 +187,16 @@ namespace servecoin
 
         private Dictionary<(int RowIndex, int ColumnIndex), string> _pendingChanges = new();
 
-        // Событие завершения редактирования ячейки
         private void DataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             var dataGridView = sender as DataGridView;
             if (dataGridView != null && e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                // Проверяем, что редактируется столбец "Target" или "Accumulated"
-                if (dataGridView.Columns[e.ColumnIndex].Name == "Target" || dataGridView.Columns[e.ColumnIndex].Name == "Accumulated")
+                if (dataGridView.Columns[e.ColumnIndex].Name == "Goal" || dataGridView.Columns[e.ColumnIndex].Name == "Accumulated")
                 {
-                    // Получаем текст из редактируемой ячейки
                     string cellValue = dataGridView[e.ColumnIndex, e.RowIndex].Value?.ToString();
                     if (!string.IsNullOrWhiteSpace(cellValue))
                     {
-                        // Сохраняем изменения в промежуточный словарь
                         _pendingChanges[(e.RowIndex, e.ColumnIndex)] = cellValue;
                     }
                 }
@@ -212,14 +208,11 @@ namespace servecoin
             {
                 try
                 {
-                    // Получаем строку и столбец измененной ячейки
                     int rowIndex = change.Key.RowIndex;
                     int columnIndex = change.Key.ColumnIndex;
 
-                    // Вычисляем результат выражения
                     double result = EvaluateExpression(change.Value);
 
-                    // Применяем результат в таблицу
                     var control = this.Controls.Find("dataGridView1", true);
                     if (control.Length > 0 && control[0] is DataGridView dataGridView)
                     {
@@ -229,7 +222,6 @@ namespace servecoin
                 }
                 catch (Exception ex)
                 {
-                    // Если выражение некорректно, показываем сообщение об ошибке
                     MessageBox.Show(
                         $"Invalid expression in cell ({change.Key.RowIndex}, {change.Key.ColumnIndex}): {change.Value}\n{ex.Message}",
                         "Error",
@@ -239,27 +231,26 @@ namespace servecoin
                 }
             }
 
-            // Очищаем промежуточные изменения после применения
             _pendingChanges.Clear();
         }
 
         private void viewSummaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int totalTargets = 0;
+            int totalGoals = 0;
             int totalAccumulated = 0;
 
             JArray table = ConvertTableToArray();
 
             foreach (var t in table)
             {
-                Target item = t.ToObject<Target>();
+                Goal item = t.ToObject<Goal>();
                 if (item != null)
                 {
-                    totalTargets += Int32.Parse(item.target);
+                    totalGoals += Int32.Parse(item.goal);
                     totalAccumulated += Int32.Parse(item.accumulated);
                 }
             }
-            MessageBox.Show($"TOTAL TABLE SUMMARY\n\nTotal sum needed: {totalTargets}\nTotal accumulated: {totalAccumulated}", "Targets summary", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"TOTAL TABLE SUMMARY\n\nTotal sum needed: {totalGoals}\nTotal accumulated: {totalAccumulated}", "Goals summary", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

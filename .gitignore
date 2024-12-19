@@ -91,7 +91,7 @@ sql/
 *.Cache
 ClientBin/
 [Ss]tyle[Cc]op.*
-![Ss]tyle[Cc]op.targets
+![Ss]tyle[Cc]op.goals
 ~$*
 *~
 *.dbmdl
