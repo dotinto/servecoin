@@ -72,12 +72,12 @@
             // linkLabel2
             // 
             linkLabel2.AutoSize = true;
-            linkLabel2.Location = new Point(119, 115);
+            linkLabel2.Location = new Point(118, 115);
             linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(71, 15);
+            linkLabel2.Size = new Size(74, 15);
             linkLabel2.TabIndex = 3;
             linkLabel2.TabStop = true;
-            linkLabel2.Text = "Project repo";
+            linkLabel2.Text = "Open source";
             linkLabel2.LinkClicked += linkLabel2_LinkClicked;
             // 
             // Form3

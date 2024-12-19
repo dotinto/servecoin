@@ -126,6 +126,7 @@ namespace servecoin
             toolStripDropDownButton3 = new ToolStripDropDownButton();
             openCalculatorToolStripMenuItem = new ToolStripMenuItem();
             dataGridView2 = new DataGridView();
+            button1 = new Button();
             toolStrip1.SuspendLayout();
             ((ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
@@ -254,12 +255,22 @@ namespace servecoin
             dataGridView2.Size = new Size(800, 356);
             dataGridView2.TabIndex = 6;
             // 
+            // button1
+            // 
+            button1.Location = new Point(379, 427);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 7;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(dataGridView2);
             Controls.Add(toolStrip1);
             Controls.Add(label1);
@@ -302,5 +313,6 @@ namespace servecoin
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem applyFormattingToolStripMenuItem;
         private DataGridView dataGridView2;
+        private Button button1;
     }
 }
