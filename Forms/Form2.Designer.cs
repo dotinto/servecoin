@@ -126,7 +126,7 @@ namespace servecoin
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Euro (€)", "US Dollar ($)" });
+            comboBox1.Items.AddRange(new object[] { "US Dollar (USD)", "", "Euro (EUR)", "", "Japanese Yen (JPY)", "", "British Pound Sterling (GBP)", "", "Australian Dollar (AUD)", "", "Canadian Dollar (CAD)", "", "Swiss Franc (CHF)", "", "Chinese Yuan Renminbi (CNY)", "", "Hong Kong Dollar (HKD)", "", "New Zealand Dollar (NZD)" });
             comboBox1.Location = new Point(217, 70);
             comboBox1.Name = "comboBox1";
             comboBox1.RightToLeft = RightToLeft.No;
