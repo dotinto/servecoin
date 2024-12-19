@@ -167,6 +167,7 @@ namespace servecoin
             // 
             // saveToolStripMenuItem
             // 
+            saveToolStripMenuItem.Image = (Image)resources.GetObject("saveToolStripMenuItem.Image");
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             saveToolStripMenuItem.Size = new Size(180, 22);
             saveToolStripMenuItem.Text = "Save";
@@ -179,6 +180,7 @@ namespace servecoin
             // 
             // aboutToolStripMenuItem
             // 
+            aboutToolStripMenuItem.Image = (Image)resources.GetObject("aboutToolStripMenuItem.Image");
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             aboutToolStripMenuItem.Size = new Size(180, 22);
             aboutToolStripMenuItem.Text = "About";
@@ -186,6 +188,7 @@ namespace servecoin
             // 
             // exitToolStripMenuItem
             // 
+            exitToolStripMenuItem.Image = (Image)resources.GetObject("exitToolStripMenuItem.Image");
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             exitToolStripMenuItem.Size = new Size(180, 22);
             exitToolStripMenuItem.Text = "Exit";
@@ -205,6 +208,7 @@ namespace servecoin
             // 
             // createToolStripMenuItem
             // 
+            createToolStripMenuItem.Image = (Image)resources.GetObject("createToolStripMenuItem.Image");
             createToolStripMenuItem.Name = "createToolStripMenuItem";
             createToolStripMenuItem.Size = new Size(180, 22);
             createToolStripMenuItem.Text = "Create goal";
@@ -212,6 +216,7 @@ namespace servecoin
             // 
             // refreshToolStripMenuItem
             // 
+            refreshToolStripMenuItem.Image = (Image)resources.GetObject("refreshToolStripMenuItem.Image");
             refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
             refreshToolStripMenuItem.Size = new Size(180, 22);
             refreshToolStripMenuItem.Text = "Refresh table";
@@ -219,6 +224,7 @@ namespace servecoin
             // 
             // viewSummaryToolStripMenuItem
             // 
+            viewSummaryToolStripMenuItem.Image = (Image)resources.GetObject("viewSummaryToolStripMenuItem.Image");
             viewSummaryToolStripMenuItem.Name = "viewSummaryToolStripMenuItem";
             viewSummaryToolStripMenuItem.Size = new Size(180, 22);
             viewSummaryToolStripMenuItem.Text = "View summary";
@@ -231,6 +237,7 @@ namespace servecoin
             // 
             // applyFormattingToolStripMenuItem
             // 
+            applyFormattingToolStripMenuItem.Image = (Image)resources.GetObject("applyFormattingToolStripMenuItem.Image");
             applyFormattingToolStripMenuItem.Name = "applyFormattingToolStripMenuItem";
             applyFormattingToolStripMenuItem.Size = new Size(180, 22);
             applyFormattingToolStripMenuItem.Text = "Apply formatting";
@@ -250,6 +257,7 @@ namespace servecoin
             // 
             // openCalculatorToolStripMenuItem
             // 
+            openCalculatorToolStripMenuItem.Image = (Image)resources.GetObject("openCalculatorToolStripMenuItem.Image");
             openCalculatorToolStripMenuItem.Name = "openCalculatorToolStripMenuItem";
             openCalculatorToolStripMenuItem.Size = new Size(180, 22);
             openCalculatorToolStripMenuItem.Text = "Open Calculator";

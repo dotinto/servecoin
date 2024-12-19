@@ -53,6 +53,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "Rop.Winforms.Icons.Ionicons": {
+              "target": "Package",
+              "version": "[1.0.16, )"
             }
           },
           "imports": [

@@ -14,6 +14,33 @@
             "related": ".xml"
           }
         }
+      },
+      "Rop.Winforms.Icons/1.0.26": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0-windows7.0/Rop.Winforms.Icons.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/Rop.Winforms.Icons.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      },
+      "Rop.Winforms.Icons.Ionicons/1.0.16": {
+        "type": "package",
+        "dependencies": {
+          "Rop.Winforms.Icons": "1.0.26"
+        },
+        "compile": {
+          "lib/net6.0-windows7.0/Rop.Winforms.Icons.Ionicons.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/Rop.Winforms.Icons.Ionicons.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
       }
     }
   },
@@ -47,11 +74,38 @@
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
+    },
+    "Rop.Winforms.Icons/1.0.26": {
+      "sha512": "YhTy0C/IeztCBETqsuZ2V8VmbYnDEfYKI+BiOLbKT0+bAr2NxVl+wRewvgH9kmwdGRv9rL3Dlz4KmtgbCu3MpA==",
+      "type": "package",
+      "path": "rop.winforms.icons/1.0.26",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net48/Rop.Winforms.Icons.dll",
+        "lib/net6.0-windows7.0/Rop.Winforms.Icons.dll",
+        "rop.winforms.icons.1.0.26.nupkg.sha512",
+        "rop.winforms.icons.nuspec"
+      ]
+    },
+    "Rop.Winforms.Icons.Ionicons/1.0.16": {
+      "sha512": "PftZA0Cim8iRgr2xD/6ppRCBhkV6cLJZYEQmaLS1vw5HJFeKXtUcSrt+ztfz0/y32XtCoCo+ddSwIxVG2fIhFw==",
+      "type": "package",
+      "path": "rop.winforms.icons.ionicons/1.0.16",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net48/Rop.Winforms.Icons.Ionicons.dll",
+        "lib/net6.0-windows7.0/Rop.Winforms.Icons.Ionicons.dll",
+        "rop.winforms.icons.ionicons.1.0.16.nupkg.sha512",
+        "rop.winforms.icons.ionicons.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "Newtonsoft.Json >= 13.0.3"
+      "Newtonsoft.Json >= 13.0.3",
+      "Rop.Winforms.Icons.Ionicons >= 1.0.16"
     ]
   },
   "packageFolders": {
@@ -107,6 +161,10 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"
+          },
+          "Rop.Winforms.Icons.Ionicons": {
+            "target": "Package",
+            "version": "[1.0.16, )"
           }
         },
         "imports": [
