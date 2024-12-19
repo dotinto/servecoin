@@ -30,9 +30,9 @@ namespace servecoin
         void TargetsTableForm()
         {
             _dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            _dataGridView.Location = new Point(12, 70);
+            _dataGridView.Location = new Point(0, 65);
             _dataGridView.Name = "dataGridView1";
-            _dataGridView.Size = new Size(776, 368);
+            _dataGridView.Size = new Size(800, 356);
             _dataGridView.TabIndex = 5;
             _dataGridView.BackgroundColor = SystemColors.Control;
             _dataGridView.GridColor = SystemColors.Control;
@@ -125,7 +125,9 @@ namespace servecoin
             applyFormattingToolStripMenuItem = new ToolStripMenuItem();
             toolStripDropDownButton3 = new ToolStripDropDownButton();
             openCalculatorToolStripMenuItem = new ToolStripMenuItem();
+            dataGridView2 = new DataGridView();
             toolStrip1.SuspendLayout();
+            ((ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -202,26 +204,26 @@ namespace servecoin
             // createToolStripMenuItem
             // 
             createToolStripMenuItem.Name = "createToolStripMenuItem";
-            createToolStripMenuItem.Size = new Size(180, 22);
+            createToolStripMenuItem.Size = new Size(165, 22);
             createToolStripMenuItem.Text = "Create target";
             createToolStripMenuItem.Click += createToolStripMenuItem_Click;
             // 
             // refreshToolStripMenuItem
             // 
             refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            refreshToolStripMenuItem.Size = new Size(180, 22);
+            refreshToolStripMenuItem.Size = new Size(165, 22);
             refreshToolStripMenuItem.Text = "Refresh table";
             refreshToolStripMenuItem.Click += refreshToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(177, 6);
+            toolStripSeparator2.Size = new Size(162, 6);
             // 
             // applyFormattingToolStripMenuItem
             // 
             applyFormattingToolStripMenuItem.Name = "applyFormattingToolStripMenuItem";
-            applyFormattingToolStripMenuItem.Size = new Size(180, 22);
+            applyFormattingToolStripMenuItem.Size = new Size(165, 22);
             applyFormattingToolStripMenuItem.Text = "Apply formatting";
             applyFormattingToolStripMenuItem.Click += applyFormattingToolStripMenuItem_Click;
             // 
@@ -244,12 +246,21 @@ namespace servecoin
             openCalculatorToolStripMenuItem.Text = "Open Calculator";
             openCalculatorToolStripMenuItem.Click += openCalculatorToolStripMenuItem_Click;
             // 
+            // dataGridView2
+            // 
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(0, 65);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.Size = new Size(800, 356);
+            dataGridView2.TabIndex = 6;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(800, 450);
+            Controls.Add(dataGridView2);
             Controls.Add(toolStrip1);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -262,6 +273,7 @@ namespace servecoin
             Load += Form1_Load;
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
+            ((ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -270,6 +282,7 @@ namespace servecoin
 
         void onload()
         {
+            dataGridView2.Visible = false;
             TargetsTableForm();
             AddTargetsToTable();
         }
@@ -288,5 +301,6 @@ namespace servecoin
         private ToolStripMenuItem createToolStripMenuItem1;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem applyFormattingToolStripMenuItem;
+        private DataGridView dataGridView2;
     }
 }

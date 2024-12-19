@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("servecoin")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5a8e92ac1d2cd59cd812944f8e74a620bad8df00")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2db0c93cba4f6c2c0ba6ec0583152a365cb9572b")]
 [assembly: System.Reflection.AssemblyProductAttribute("servecoin")]
 [assembly: System.Reflection.AssemblyTitleAttribute("servecoin")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
