@@ -32,7 +32,7 @@ namespace servecoin
             _dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             _dataGridView.Location = new Point(0, 65);
             _dataGridView.Name = "dataGridView1";
-            _dataGridView.Size = new Size(800, 356);
+            _dataGridView.Size = new Size(800, 385);
             _dataGridView.TabIndex = 5;
             _dataGridView.BackgroundColor = SystemColors.Control;
             _dataGridView.GridColor = SystemColors.Control;
@@ -126,7 +126,7 @@ namespace servecoin
             toolStripDropDownButton3 = new ToolStripDropDownButton();
             openCalculatorToolStripMenuItem = new ToolStripMenuItem();
             dataGridView2 = new DataGridView();
-            button1 = new Button();
+            viewSummaryToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1.SuspendLayout();
             ((ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
@@ -195,7 +195,7 @@ namespace servecoin
             toolStripDropDownButton2.AutoSize = false;
             toolStripDropDownButton2.AutoToolTip = false;
             toolStripDropDownButton2.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripDropDownButton2.DropDownItems.AddRange(new ToolStripItem[] { createToolStripMenuItem, refreshToolStripMenuItem, toolStripSeparator2, applyFormattingToolStripMenuItem });
+            toolStripDropDownButton2.DropDownItems.AddRange(new ToolStripItem[] { createToolStripMenuItem, refreshToolStripMenuItem, viewSummaryToolStripMenuItem, toolStripSeparator2, applyFormattingToolStripMenuItem });
             toolStripDropDownButton2.Image = (Image)resources.GetObject("toolStripDropDownButton2.Image");
             toolStripDropDownButton2.ImageTransparentColor = Color.Magenta;
             toolStripDropDownButton2.Name = "toolStripDropDownButton2";
@@ -205,26 +205,26 @@ namespace servecoin
             // createToolStripMenuItem
             // 
             createToolStripMenuItem.Name = "createToolStripMenuItem";
-            createToolStripMenuItem.Size = new Size(165, 22);
+            createToolStripMenuItem.Size = new Size(180, 22);
             createToolStripMenuItem.Text = "Create target";
             createToolStripMenuItem.Click += createToolStripMenuItem_Click;
             // 
             // refreshToolStripMenuItem
             // 
             refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            refreshToolStripMenuItem.Size = new Size(165, 22);
+            refreshToolStripMenuItem.Size = new Size(180, 22);
             refreshToolStripMenuItem.Text = "Refresh table";
             refreshToolStripMenuItem.Click += refreshToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(162, 6);
+            toolStripSeparator2.Size = new Size(177, 6);
             // 
             // applyFormattingToolStripMenuItem
             // 
             applyFormattingToolStripMenuItem.Name = "applyFormattingToolStripMenuItem";
-            applyFormattingToolStripMenuItem.Size = new Size(165, 22);
+            applyFormattingToolStripMenuItem.Size = new Size(180, 22);
             applyFormattingToolStripMenuItem.Text = "Apply formatting";
             applyFormattingToolStripMenuItem.Click += applyFormattingToolStripMenuItem_Click;
             // 
@@ -252,17 +252,15 @@ namespace servecoin
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(0, 65);
             dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(800, 356);
+            dataGridView2.Size = new Size(800, 385);
             dataGridView2.TabIndex = 6;
             // 
-            // button1
+            // viewSummaryToolStripMenuItem
             // 
-            button1.Location = new Point(379, 427);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 7;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            viewSummaryToolStripMenuItem.Name = "viewSummaryToolStripMenuItem";
+            viewSummaryToolStripMenuItem.Size = new Size(180, 22);
+            viewSummaryToolStripMenuItem.Text = "View summary";
+            viewSummaryToolStripMenuItem.Click += viewSummaryToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -270,7 +268,6 @@ namespace servecoin
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(800, 450);
-            Controls.Add(button1);
             Controls.Add(dataGridView2);
             Controls.Add(toolStrip1);
             Controls.Add(label1);
@@ -313,6 +310,6 @@ namespace servecoin
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem applyFormattingToolStripMenuItem;
         private DataGridView dataGridView2;
-        private Button button1;
+        private ToolStripMenuItem viewSummaryToolStripMenuItem;
     }
 }

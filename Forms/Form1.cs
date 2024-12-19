@@ -225,7 +225,7 @@ namespace servecoin
                     {
                         dataGridView[columnIndex, rowIndex].Value = result;
                     }
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -241,6 +241,25 @@ namespace servecoin
 
             // ќчищаем промежуточные изменени€ после применени€
             _pendingChanges.Clear();
+        }
+
+        private void viewSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int totalTargets = 0;
+            int totalAccumulated = 0;
+
+            JArray table = ConvertTableToArray();
+
+            foreach (var t in table)
+            {
+                Target item = t.ToObject<Target>();
+                if (item != null)
+                {
+                    totalTargets += Int32.Parse(item.target);
+                    totalAccumulated += Int32.Parse(item.accumulated);
+                }
+            }
+            MessageBox.Show($"TOTAL TABLE SUMMARY\n\nTotal sum needed: {totalTargets}\nTotal accumulated: {totalAccumulated}", "Targets summary", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
