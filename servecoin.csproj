@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Forms\" />
     <Folder Include="Material\" />
     <Folder Include="Resources\" />
   </ItemGroup>
